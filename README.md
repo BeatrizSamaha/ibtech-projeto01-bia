@@ -18,6 +18,18 @@ A ideia era ir além de um site estático: cada detalhe tem intenção, de como 
 
 ## Stack
 
+![HTML5](https://img.shields.io/badge/HTML5-0D0D0D?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-FF1B8D?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-0D0D0D?style=flat-square&logo=javascript&logoColor=white)
+![Python](https://img.shields.io/badge/Python-FF1B8D?style=flat-square&logo=python&logoColor=white)
+![C](https://img.shields.io/badge/C%2FC%2B%2B-0D0D0D?style=flat-square&logo=c&logoColor=white)
+![Java](https://img.shields.io/badge/Java-FF1B8D?style=flat-square&logo=openjdk&logoColor=white)
+![Git](https://img.shields.io/badge/Git-0D0D0D?style=flat-square&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-FF1B8D?style=flat-square&logo=github&logoColor=white)
+![VS Code](https://img.shields.io/badge/VS%20Code-0D0D0D?style=flat-square&logo=visualstudiocode&logoColor=white)
+![Figma](https://img.shields.io/badge/Figma-FF1B8D?style=flat-square&logo=figma&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-0D0D0D?style=flat-square&logo=linux&logoColor=white)
+
 | Camada | Tecnologia |
 |--------|-----------|
 | Estrutura | HTML5 semântico · Open Graph · Meta tags |
@@ -105,7 +117,7 @@ npx serve .
 **Beatriz Samaha de Faria Garcia**
 
 - biagarcia2806@gmail.com
-- [linkedin.com/in/beatriz-samaha](https://linkedin.com/in/beatriz-samaha)
+- [linkedin.com/in/beatriz-samaha-29a861358](https://www.linkedin.com/in/beatriz-samaha-29a861358)
 - [github.com/beatrizsamaha](https://github.com/beatrizsamaha)
 
 ---
