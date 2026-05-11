@@ -1,4 +1,4 @@
-/* ============================================================
+//* ============================================================
    BEATRIZ SAMAHA — Cartão de Visita
    IbTech · Trilha Frontend · 2026.1
    ============================================================ */
@@ -593,8 +593,8 @@ nav {
 
 .bento-card {
   border-radius: 8px;
-  overflow: hidden;
   cursor: pointer;
+  transform-style: preserve-3d;
 }
 
 .flip-card {
@@ -628,6 +628,7 @@ nav {
   justify-content: center;
   padding: 2rem;
   border-radius: 4px;
+  overflow: hidden;
 }
 
 .flip-front {
@@ -673,8 +674,10 @@ nav {
   position: absolute;
   inset: -40%;
   border-radius: 50%;
-  background: repeating-conic-gradient(rgba(255,255,255,.12) 0deg 9deg, var(--c) 9deg 18deg);
+  background: repeating-conic-gradient(rgba(255,255,255,.08) 0deg 9deg, var(--c) 9deg 18deg);
   animation: rot 20s linear infinite;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .bento-content {
