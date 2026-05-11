@@ -3,6 +3,8 @@
 
 **Beatriz Samaha** · IbTech · Trilha Frontend · Projeto 01 · 2026.1
 
+🌐 **Ao vivo:** https://beatrizsamaha.github.io/ibtech-projeto01-bia/
+
 > Cartão de visita pessoal feito em HTML, CSS e JavaScript puros.  
 > Sem framework. Sem dependência. Vanilla.
 
