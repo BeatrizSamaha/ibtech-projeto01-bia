@@ -618,12 +618,8 @@ nav {
   transform: rotateY(180deg);
 }
 
-/* No mobile, desativa hover e usa só clique */
-@media (hover: none) {
-  .flip-card:hover .flip-inner,
-  .bento-card:hover .flip-inner {
-    transform: none;
-  }
+
+
 }
 
 .flip-front,
@@ -939,4 +935,47 @@ footer {
   .fade-in       { opacity: 1; transform: none; }
   .hero-subtitle { animation: none; -webkit-text-fill-color: #0D0D0D; }
   .hero-name     { opacity: 1; animation: none; }
+}
+
+/* ── MOBILE: sem 3D, fade simples ── */
+@media (max-width: 768px) {
+  .bento-sb { display: none; }
+
+  .flip-inner {
+    transform: none !important;
+    transform-style: flat;
+  }
+
+  .flip-front {
+    position: relative;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+    transform: none;
+  }
+
+  .flip-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+    transform: none;
+    opacity: 0;
+    transition: opacity .3s ease;
+    border-radius: 0;
+    z-index: 2;
+  }
+
+  .flip-card.flipped .flip-back,
+  .bento-card.flipped .flip-back {
+    opacity: 1;
+  }
+
+  .flip-card.flipped .flip-front,
+  .bento-card.flipped .flip-front {
+    opacity: 0;
+  }
+
+  .bento-card {
+    height: 200px;
+  }
 }
