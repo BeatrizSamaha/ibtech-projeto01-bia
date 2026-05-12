@@ -597,50 +597,12 @@ nav {
   transform-style: preserve-3d;
 }
 
-
-
-/* Linha decorativa nos cards escuros */
-.bento-card[style*="0D0D0D"] .bento-content::before {
-  content: '';
-  display: block;
-  width: 32px;
-  height: 3px;
-  background: var(--pk);
-  margin-bottom: .75rem;
-  border-radius: 2px;
-}
-
-
-
-/* ============================================================
-   10. HOBBIES — BENTO GRID & FLIP CARDS
-   ============================================================ */
-
-.inspira {
-  background: var(--cm);
-  padding: 6rem 0;
-}
-
-.inspira-pill {
-  border-color: var(--bk);
-  color: var(--bk);
-}
-
-.bento-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 260px 260px;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.bento-card {
-  border-radius: 8px;
+.flip-card {
+  height: 240px;
+  perspective: 1000px;
   cursor: pointer;
-  transform-style: preserve-3d;
 }
 
-/* Container do flip */
 .flip-inner {
   position: relative;
   width: 100%;
@@ -649,13 +611,21 @@ nav {
   transition: transform .6s cubic-bezier(.22,1,.36,1);
 }
 
-/* Flip no hover (desktop) */
 .flip-card:hover .flip-inner,
-.bento-card:hover .flip-inner {
+.bento-card:hover .flip-inner,
+.flip-card.flipped .flip-inner,
+.bento-card.flipped .flip-inner {
   transform: rotateY(180deg);
 }
 
-/* Frente e verso */
+/* No mobile, desativa hover e usa só clique */
+@media (hover: none) {
+  .flip-card:hover .flip-inner,
+  .bento-card:hover .flip-inner {
+    transform: none;
+  }
+}
+
 .flip-front,
 .flip-back {
   position: absolute;
@@ -664,37 +634,33 @@ nav {
   -webkit-backface-visibility: hidden;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
   padding: 2rem;
+  border-radius: 4px;
   overflow: hidden;
 }
 
 .flip-front {
-  background: var(--c, #FF1B8D);
   color: var(--wh);
-  border-radius: 8px;
+  background: var(--c);
+  position: relative;
+  overflow: hidden;
+}
+
+.flip-front h3 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 2rem;
+  letter-spacing: .04em;
+  color: var(--wh);
 }
 
 .flip-back {
   background: var(--wh);
   border: 2.5px solid var(--bk);
-  border-radius: 8px;
   transform: rotateY(180deg);
+  text-align: center;
   align-items: flex-start;
-  justify-content: center;
-}
-
-.flip-front h3 {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 2.2rem;
-  letter-spacing: -.01em;
-  text-transform: uppercase;
-  color: var(--wh);
-  line-height: 1;
-  position: relative;
-  z-index: 2;
 }
 
 .flip-back h3 {
@@ -710,41 +676,63 @@ nav {
   color: #555;
 }
 
-/* Número do card */
+/* Bento específico */
+.bento-card .flip-front { border-radius: 0; }
+.bento-card .flip-back  { border-radius: 0; }
+
+.bento-sb {
+  position: absolute;
+  inset: -40%;
+  border-radius: 50%;
+  background: repeating-conic-gradient(rgba(255,255,255,.08) 0deg 9deg, var(--c) 9deg 18deg);
+  animation: rot 20s linear infinite;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.bento-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  height: 100%;
+  width: 100%;
+  padding: 1.5rem;
+}
+
 .bento-num {
+  font-family: 'DM Sans', sans-serif;
   font-size: .7rem;
   font-weight: 500;
   letter-spacing: .15em;
   color: rgba(255,255,255,.45);
   margin-bottom: .4rem;
-  position: relative;
-  z-index: 2;
 }
 
-/* Starburst girando */
-.bento-sb {
-  position: absolute;
-  inset: -40%;
-  border-radius: 50%;
-  background: repeating-conic-gradient(rgba(255,255,255,.08) 0deg 9deg, transparent 9deg 18deg);
-  animation: rot 20s linear infinite;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  z-index: 1;
+.bento-content h3 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 2.2rem;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+  color: var(--wh);
+  line-height: 1;
+  text-align: left;
 }
 
 /* Linha decorativa nos cards escuros */
-.bento-card[style*="0D0D0D"] .flip-front::before {
+.bento-card[style*="0D0D0D"] .bento-content::before {
   content: '';
-  position: absolute;
-  top: 1.5rem;
-  left: 2rem;
+  display: block;
   width: 32px;
   height: 3px;
   background: var(--pk);
+  margin-bottom: .75rem;
   border-radius: 2px;
-  z-index: 2;
 }
+
 
 /* ============================================================
    11. CONTATO
@@ -925,7 +913,25 @@ footer {
    14. RESPONSIVIDADE
    ============================================================ */
 
-
+@media (max-width: 768px) {
+  .hero          { grid-template-columns: 1fr; }
+  .hero-r        { min-height: 60vw; }
+  .hero-l        { padding: 3rem 2rem; }
+  .about-g       { grid-template-columns: 1fr; gap: 3rem; }
+  .contact-g     { grid-template-columns: 1fr; }
+  .contact-l     { padding: 3rem 2rem; }
+  .contact-r     { min-height: 50vw; }
+  .wido-g        { grid-template-columns: 1fr; }
+  .wido-col      { border-right: none; border-bottom: 2.5px solid var(--bk); }
+  .wido-col:last-child { border-bottom: none; }
+  .bento-grid    { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .bento-card    { height: 200px; }
+  .cnt           { padding: 0 1.5rem; }
+  .nlinks        { display: none; }
+  footer         { padding: 1.5rem 2rem; flex-direction: column; gap: .4rem; text-align: center; }
+  .cursor,
+  .cursor-ring   { display: none; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .sb,
@@ -933,57 +939,4 @@ footer {
   .fade-in       { opacity: 1; transform: none; }
   .hero-subtitle { animation: none; -webkit-text-fill-color: #0D0D0D; }
   .hero-name     { opacity: 1; animation: none; }
-}
-
-
-
-
-
-
-  /* Esconde starburst */
-  .bento-sb { display: none !important; }
-
-  /* Bento content alinhado */
-  .bento-content {
-    justify-content: center;
-    min-height: 100px;
-  }
-
-  .bento-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    gap: .75rem;
-  }
-}
-
-/* ============================================================
-   14. RESPONSIVIDADE — MOBILE
-   ============================================================ */
-
-@media (max-width: 768px) {
-  nav { padding: .9rem 1.5rem; }
-  .nlinks { display: none; }
-  .hero { grid-template-columns: 1fr; }
-  .hero-r { min-height: 60vw; }
-  .hero-l { padding: 3rem 2rem; }
-  .cnt { padding: 0 1.5rem; }
-  .about-g { grid-template-columns: 1fr; gap: 3rem; }
-  .wido-g { grid-template-columns: 1fr; }
-  .wido-col { border-right: none; border-bottom: 2.5px solid var(--bk); }
-  .wido-col:last-child { border-bottom: none; }
-  .contact-g { grid-template-columns: 1fr; }
-  .contact-l { padding: 3rem 2rem; }
-  .contact-r { min-height: 50vw; }
-  .contact-links { grid-template-columns: 1fr; }
-  footer { padding: 1.5rem 2rem; flex-direction: column; gap: .4rem; text-align: center; }
-  .cursor, .cursor-ring { display: none; }
-  .sec-num { display: none; }
-
-  /* HOBBY: esconde o verso, mostra só a frente */
-  .bento-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-  }
-  .bento-card { height: 160px; }
-  
 }
