@@ -597,12 +597,50 @@ nav {
   transform-style: preserve-3d;
 }
 
-.flip-card {
-  height: 240px;
-  perspective: 1000px;
-  cursor: pointer;
+
+
+/* Linha decorativa nos cards escuros */
+.bento-card[style*="0D0D0D"] .bento-content::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 3px;
+  background: var(--pk);
+  margin-bottom: .75rem;
+  border-radius: 2px;
 }
 
+
+
+/* ============================================================
+   10. HOBBIES — BENTO GRID & FLIP CARDS
+   ============================================================ */
+
+.inspira {
+  background: var(--cm);
+  padding: 6rem 0;
+}
+
+.inspira-pill {
+  border-color: var(--bk);
+  color: var(--bk);
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 260px 260px;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.bento-card {
+  border-radius: 8px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+/* Container do flip */
 .flip-inner {
   position: relative;
   width: 100%;
@@ -611,17 +649,13 @@ nav {
   transition: transform .6s cubic-bezier(.22,1,.36,1);
 }
 
+/* Flip no hover (desktop) */
 .flip-card:hover .flip-inner,
-.bento-card:hover .flip-inner,
-.flip-card.flipped .flip-inner,
-.bento-card.flipped .flip-inner {
+.bento-card:hover .flip-inner {
   transform: rotateY(180deg);
 }
 
-
-
-}
-
+/* Frente e verso */
 .flip-front,
 .flip-back {
   position: absolute;
@@ -630,33 +664,37 @@ nav {
   -webkit-backface-visibility: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-end;
   padding: 2rem;
-  border-radius: 4px;
   overflow: hidden;
 }
 
 .flip-front {
+  background: var(--c, #FF1B8D);
   color: var(--wh);
-  background: var(--c);
-  position: relative;
-  overflow: hidden;
-}
-
-.flip-front h3 {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 2rem;
-  letter-spacing: .04em;
-  color: var(--wh);
+  border-radius: 8px;
 }
 
 .flip-back {
   background: var(--wh);
   border: 2.5px solid var(--bk);
+  border-radius: 8px;
   transform: rotateY(180deg);
-  text-align: center;
   align-items: flex-start;
+  justify-content: center;
+}
+
+.flip-front h3 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 2.2rem;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+  color: var(--wh);
+  line-height: 1;
+  position: relative;
+  z-index: 2;
 }
 
 .flip-back h3 {
@@ -672,63 +710,41 @@ nav {
   color: #555;
 }
 
-/* Bento específico */
-.bento-card .flip-front { border-radius: 0; }
-.bento-card .flip-back  { border-radius: 0; }
-
-.bento-sb {
-  position: absolute;
-  inset: -40%;
-  border-radius: 50%;
-  background: repeating-conic-gradient(rgba(255,255,255,.08) 0deg 9deg, var(--c) 9deg 18deg);
-  animation: rot 20s linear infinite;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-.bento-content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  height: 100%;
-  width: 100%;
-  padding: 1.5rem;
-}
-
+/* Número do card */
 .bento-num {
-  font-family: 'DM Sans', sans-serif;
   font-size: .7rem;
   font-weight: 500;
   letter-spacing: .15em;
   color: rgba(255,255,255,.45);
   margin-bottom: .4rem;
+  position: relative;
+  z-index: 2;
 }
 
-.bento-content h3 {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 2.2rem;
-  letter-spacing: -.01em;
-  text-transform: uppercase;
-  color: var(--wh);
-  line-height: 1;
-  text-align: left;
+/* Starburst girando */
+.bento-sb {
+  position: absolute;
+  inset: -40%;
+  border-radius: 50%;
+  background: repeating-conic-gradient(rgba(255,255,255,.08) 0deg 9deg, transparent 9deg 18deg);
+  animation: rot 20s linear infinite;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  z-index: 1;
 }
 
 /* Linha decorativa nos cards escuros */
-.bento-card[style*="0D0D0D"] .bento-content::before {
+.bento-card[style*="0D0D0D"] .flip-front::before {
   content: '';
-  display: block;
+  position: absolute;
+  top: 1.5rem;
+  left: 2rem;
   width: 32px;
   height: 3px;
   background: var(--pk);
-  margin-bottom: .75rem;
   border-radius: 2px;
+  z-index: 2;
 }
-
 
 /* ============================================================
    11. CONTATO
@@ -969,8 +985,5 @@ footer {
     grid-template-rows: auto;
   }
   .bento-card { height: 160px; }
-  .flip-card { height: 160px; }
-  .bento-sb { display: none; }
-  .flip-back { display: none; }
-  .bento-content h3 { font-size: 1.4rem; }
+  
 }
