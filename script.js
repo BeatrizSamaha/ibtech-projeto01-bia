@@ -83,3 +83,9 @@ var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isInters
     el.addEventListener('mouseenter', function(){ cur.style.width='20px'; cur.style.height='20px'; ring.style.width='50px'; ring.style.height='50px'; });
     el.addEventListener('mouseleave', function(){ cur.style.width='12px'; cur.style.height='12px'; ring.style.width='36px'; ring.style.height='36px'; });
   });
+// Flip cards por clique (mobile)
+document.querySelectorAll('.flip-card, .bento-card').forEach(function(card) {
+  card.addEventListener('click', function() {
+    card.classList.toggle('flipped');
+  });
+});

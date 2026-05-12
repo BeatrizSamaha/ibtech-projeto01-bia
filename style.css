@@ -612,8 +612,18 @@ nav {
 }
 
 .flip-card:hover .flip-inner,
-.bento-card:hover .flip-inner {
+.bento-card:hover .flip-inner,
+.flip-card.flipped .flip-inner,
+.bento-card.flipped .flip-inner {
   transform: rotateY(180deg);
+}
+
+/* No mobile, desativa hover e usa só clique */
+@media (hover: none) {
+  .flip-card:hover .flip-inner,
+  .bento-card:hover .flip-inner {
+    transform: none;
+  }
 }
 
 .flip-front,
