@@ -937,45 +937,60 @@ footer {
   .hero-name     { opacity: 1; animation: none; }
 }
 
-/* ── MOBILE: sem 3D, fade simples ── */
+
+
+
 @media (max-width: 768px) {
-  .bento-sb { display: none; }
+
+  /* Desativa tudo relacionado a flip */
+  .flip-card,
+  .bento-card {
+    height: auto;
+    perspective: none;
+  }
 
   .flip-inner {
     transform: none !important;
-    transform-style: flat;
+    transform-style: flat !important;
+    position: relative;
+    height: auto;
   }
 
   .flip-front {
     position: relative;
     backface-visibility: visible;
     -webkit-backface-visibility: visible;
-    transform: none;
+    transform: none !important;
+    min-height: 120px;
   }
 
   .flip-back {
-    position: absolute;
-    inset: 0;
+    position: relative;
     backface-visibility: visible;
     -webkit-backface-visibility: visible;
-    transform: none;
-    opacity: 0;
-    transition: opacity .3s ease;
-    border-radius: 0;
-    z-index: 2;
+    transform: none !important;
+    background: var(--wh);
+    border: none;
+    border-top: 2px solid rgba(255,255,255,.2);
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    align-items: flex-start;
   }
 
-  .flip-card.flipped .flip-back,
-  .bento-card.flipped .flip-back {
-    opacity: 1;
+  .flip-back h3 { margin-bottom: .4rem; }
+
+  /* Esconde starburst */
+  .bento-sb { display: none !important; }
+
+  /* Bento content alinhado */
+  .bento-content {
+    justify-content: center;
+    min-height: 100px;
   }
 
-  .flip-card.flipped .flip-front,
-  .bento-card.flipped .flip-front {
-    opacity: 0;
-  }
-
-  .bento-card {
-    height: 200px;
+  .bento-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: .75rem;
   }
 }
