@@ -940,81 +940,37 @@ footer {
   }
 }
 
-@media (max-width: 768px) {
+/* ============================================================
+   14. RESPONSIVIDADE — MOBILE
+   ============================================================ */
 
-  /* NAV */
+@media (max-width: 768px) {
   nav { padding: .9rem 1.5rem; }
   .nlinks { display: none; }
-
-  /* HERO */
   .hero { grid-template-columns: 1fr; }
   .hero-r { min-height: 60vw; }
   .hero-l { padding: 3rem 2rem; }
-
-  /* GERAL */
   .cnt { padding: 0 1.5rem; }
   .about-g { grid-template-columns: 1fr; gap: 3rem; }
-
-  /* HABILIDADES */
   .wido-g { grid-template-columns: 1fr; }
   .wido-col { border-right: none; border-bottom: 2.5px solid var(--bk); }
   .wido-col:last-child { border-bottom: none; }
-
-  /* HOBBY — SEM FLIP, SEM 3D, SEM STARBURST */
-  .bento-grid {
-    display: flex;
-    flex-direction: column;
-    gap: .75rem;
-  }
-
-  .bento-card,
-  .flip-card {
-    height: auto !important;
-    perspective: none !important;
-  }
-
-  .flip-inner {
-    position: static !important;
-    transform: none !important;
-    transform-style: flat !important;
-    height: auto !important;
-  }
-
-  .flip-front {
-    position: static !important;
-    transform: none !important;
-    backface-visibility: visible !important;
-    -webkit-backface-visibility: visible !important;
-    min-height: 100px;
-    border-radius: 8px 8px 0 0;
-  }
-
-  .flip-back {
-    position: static !important;
-    transform: none !important;
-    backface-visibility: visible !important;
-    -webkit-backface-visibility: visible !important;
-    opacity: 1 !important;
-    border-radius: 0 0 8px 8px;
-    border: 2.5px solid var(--bk);
-    border-top: none;
-    text-align: left;
-    align-items: flex-start;
-    padding: 1.25rem 1.5rem;
-  }
-
-  .bento-sb { display: none !important; }
-  .bento-content { min-height: 100px; justify-content: center; }
-
-  /* CONTATO */
   .contact-g { grid-template-columns: 1fr; }
   .contact-l { padding: 3rem 2rem; }
   .contact-r { min-height: 50vw; }
   .contact-links { grid-template-columns: 1fr; }
-
-  /* FOOTER */
   footer { padding: 1.5rem 2rem; flex-direction: column; gap: .4rem; text-align: center; }
-
-  /* CURSOR */
   .cursor, .cursor-ring { display: none; }
+  .sec-num { display: none; }
+
+  /* HOBBY: esconde o verso, mostra só a frente */
+  .bento-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .bento-card { height: 160px; }
+  .flip-card { height: 160px; }
+  .bento-sb { display: none; }
+  .flip-back { display: none; }
+  .bento-content h3 { font-size: 1.4rem; }
 }
